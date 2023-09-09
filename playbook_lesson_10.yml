@@ -1,0 +1,30 @@
+- hosts: webservers
+  tasks:
+    - name: apt update
+      ansible.builtin.apt:
+        name: apt
+        state: present
+        update_cache: yes
+      become: yes
+      tags: update  
+    
+    - name: install git
+      ansible.builtin.apt:
+        name: git
+        state: present
+        update_cache: yes
+      become: yes
+      tags: install
+
+
+    - name: create asya
+      ansible.builtin.user:
+        name: asya
+        group: mshipilov
+        uid: 1001
+        append: true
+      become: yes
+      tags: user 
+      
+
+
